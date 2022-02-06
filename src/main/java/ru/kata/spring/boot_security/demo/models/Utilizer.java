@@ -41,10 +41,6 @@ public class Utilizer implements Serializable, UserDetails {
     @Size(min=2, message = "Ввести не менее 2-х знаков")
     private String password;
 
-    //Данное поле было внесено из примера (связано с RegistrationController), удалить за ненадобностью
-    @Transient
-    private String passwordConfirm;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
@@ -103,10 +99,6 @@ public class Utilizer implements Serializable, UserDetails {
     public void setUsername(String username) {this.username = username;}
 
     public void setPassword(String password) {this.password = password;}
-
-    public String getPasswordConfirm() {return passwordConfirm;}
-
-    public void setPasswordConfirm(String passwordConfirm) {this.passwordConfirm = passwordConfirm;}
 
     public Set<Role> getRoles() {return roles;}
 
