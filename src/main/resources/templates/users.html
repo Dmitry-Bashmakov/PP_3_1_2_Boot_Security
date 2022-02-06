@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en"> <!--xmlns="http://www.w3.org/1999/xhtml"-->
+<head>
+    <meta charset="UTF-8">
+    <title th:align="center">Users</title>
+</head>
+<body>
+<div th:align="center">Это список моих пользователей</div>
+</br>
+    <table th:border="5" th:align="center">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Логин</th>
+            <!--<th scope="col">Пароль</th>-->
+            <!--<th scope="col">Роль</th>-->
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:utext="${user.id}">...</td>
+            <td th:utext="${user.name}">...</td>
+            <td th:utext="${user.lastName}">...</td>
+            <td th:utext="${user.age}">...</td>
+            <td th:utext="${user.username}">...</td>
+            <!--<td th:utext="${user.password}">...</td>-->
+            <!--<td th:utext="${user.roles}">...</td>-->
+        </tr>
+    </table>
+
+    <div th:each="user : ${users}" th:align="center">
+        <a style="" th:href="@{/admin/{id}/edit(id=${user.id})}" th:text="${user.name}">user</a>
+    </div>
+
+    <form method="LINK" action="/admin/new" th:align="center">
+        <input type="submit" value="Создать нового пользователя">
+    </form>
+
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
