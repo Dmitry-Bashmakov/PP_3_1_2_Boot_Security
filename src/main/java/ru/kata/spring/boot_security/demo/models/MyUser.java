@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_utilizer")
-public class Utilizer implements Serializable, UserDetails {
+public class MyUser implements Serializable, UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -44,9 +44,9 @@ public class Utilizer implements Serializable, UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    public Utilizer() {}
+    public MyUser() {}
 
-    public Utilizer(long id, String name, String lastName, Integer age, String username, String password, Set<Role> roles) {
+    public MyUser(long id, String name, String lastName, Integer age, String username, String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -56,7 +56,7 @@ public class Utilizer implements Serializable, UserDetails {
         this.roles = roles;
     }
 
-    public Utilizer(int id, String name, String lastName, Integer age) {
+    public MyUser(int id, String name, String lastName, Integer age) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -102,6 +102,12 @@ public class Utilizer implements Serializable, UserDetails {
 
     public Set<Role> getRoles() {return roles;}
 
+    public String getRolesToString() {
+        StringBuilder sb = new StringBuilder();
+        for (Role role : roles) {sb.append(role.toString());}
+        return sb.toString();
+    }
+
     public void setRoles(Set<Role> roles) {this.roles = roles;}
 
     @Override
@@ -131,7 +137,7 @@ public class Utilizer implements Serializable, UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Utilizer that = (Utilizer) o;
+        MyUser that = (MyUser) o;
         return Objects.equals(name, that.name) && Objects.equals(lastName, that.lastName) && Objects.equals(age, that.age);
     }
 

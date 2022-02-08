@@ -4,11 +4,30 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Данные пользователя</h1>
+    <h1 th:align="center">Данные пользователя</h1>
 
 
-<form action="/logout" method="POST">
-    <button type="submit">Logout</button>
-</form>
+    <table th:border="5" th:align="center">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Роли</th>
+        </tr>
+        <tr>
+            <td th:utext="${user.id}">...</td>
+            <td th:utext="${user.name}">...</td>
+            <td th:utext="${user.lastName}">...</td>
+            <td th:utext="${user.age}">...</td>
+            <td th:utext="${user.username}">...</td>
+            <td th:utext="${user.getRolesToString()}">...</td>
+        </tr>
+    </table>
+
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
 </body>
 </html>
